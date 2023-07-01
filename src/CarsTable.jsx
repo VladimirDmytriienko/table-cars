@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import axios from 'axios';
 import { useTableSearch } from "./useTableSearch";
-import { Stack, Pagination } from '@mui/material';
+import { Stack, Pagination, TextField, Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import AddCarModal from "./components/AddCarModal";
 import CarModal from "./components/CarModal";
 import CarTable from "./components/CarTable";
-import Header from "./components/Header";
+import fetchData from "./services/fetchData";
 
 const CarsTable = () => {
     const [cars, setCars] = useState([]);
@@ -17,25 +17,9 @@ const CarsTable = () => {
     const [selectedCar, setSelectedCar] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-    
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const carsData = localStorage.getItem("cars-table");
-                if (carsData) {
-                    setCars(JSON.parse(carsData));
-                } else {
-                    const response = await axios.get("https://myfakeapi.com/api/cars/");
-                    setCars(response.data.cars);
-
-                    localStorage.setItem("cars-table", JSON.stringify(response.data.cars));
-                }
-            } catch (error) {
-                console.log('Error fetching car data:', error);
-            }
-        };
-
-        fetchData();
+        fetchData(setCars);
     }, []);
 
     const { filteredData } = useTableSearch(cars, searchTerm);
@@ -90,17 +74,37 @@ const CarsTable = () => {
     return (
         <div className="wrapper">
 
-            <Header searchTerm={searchTerm} onSearch={handleSearch} onAddCar={() => setIsAddModalOpen(true)}/>
+            <TextField
+                id="outlined-basic" label="Search" variant="outlined"
+                type="text"
+                value={searchTerm}
+                onChange={handleSearch}
+                placeholder="Search..."
+                size="small"
+            />
+            <Button variant="outlined" sx={{
+                color: 'gray',
+                borderColor: 'gray',
+                '&:hover': {
+                    borderColor: 'blue',
+                    color: 'blue',
+                },
+                p: '7px',
+                m: '0 7px',
+
+            }} startIcon={<AddIcon />} onClick={() => setIsAddModalOpen(true)}>
+                Add Car
+            </Button>
 
             <CarTable cars={currentItems} onDelete={handleDeleteCar} onEdit={handleEditCar} />
 
             <Stack spacing={2} direction="row" mt={2} alignItems="center" justifyContent="center">
-                <Pagination count={Math.ceil(filteredData.length / itemsPerPage)} page={currentPage} onChange={handlePageChange}/>
+                <Pagination count={Math.ceil(filteredData.length / itemsPerPage)} page={currentPage} onChange={handlePageChange} />
                 <input className="input" type="number" value={itemsPerPage} onChange={(event) => setItemsPerPage(parseInt(event.target.value))} />
             </Stack>
 
             <CarModal car={selectedCar} open={isModalOpen} onClose={() => setIsModalOpen(false)} onSave={handleSaveCar} />
-            <AddCarModal open={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} onSave={handleAddCar}/>
+            <AddCarModal open={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} onSave={handleAddCar} />
         </div>
     );
 };

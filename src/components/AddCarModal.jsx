@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Modal, TextField, Button, Box, IconButton, Select, MenuItem } from "@mui/material";
+import { Modal, TextField, Button, Box, IconButton, Select, MenuItem, } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useForm, Controller } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
@@ -52,18 +52,50 @@ const AddCarModal = ({ open, onClose, onSave }) => {
                 <IconButton sx={{ position: "absolute", top: 0, right: 0 }} onClick={handleClose}>
                     <CloseIcon />
                 </IconButton>
-                <h2>Add Car</h2>
+                <h3>Add Car</h3>
+
                 <Controller
                     name="carId"
                     control={control}
                     render={({ field }) => <input type="hidden" {...field} />}
                 />
-                <TextField label="Company" sx={{ mb: 1.5 }} fullWidth name="company" control={control} defaultValue="" />
-                <TextField label="Model" sx={{ mb: 1.5 }} fullWidth name="model" control={control} defaultValue="" />
-                <TextField label="Color" sx={{ mb: 1.5 }} fullWidth name="color" control={control} defaultValue="" />
-                <TextField label="Year" sx={{ mb: 1.5 }} fullWidth name="year" control={control} defaultValue="" />
-                <TextField label="VIN" sx={{ mb: 1.5 }} fullWidth name="vin" control={control} defaultValue="" />
-                <TextField label="Price" sx={{ mb: 1.5 }} fullWidth name="price" control={control} defaultValue="" />
+                <Controller
+                    name="company"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => <TextField label="Company" fullWidth {...field} sx={{ mb: 1.5 }}/>}
+                />
+                <Controller
+                    name="model"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => <TextField label="Model" fullWidth {...field} sx={{ mb: 1.5 }}/>}
+                />
+
+                <Controller
+                    name="color"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => <TextField label="Color" fullWidth {...field} sx={{ mb: 1.5 }}/>}
+                />
+                <Controller
+                    name="year"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => <TextField label="Year" fullWidth {...field} sx={{ mb: 1.5 }}/>}
+                />
+                <Controller
+                    name="vin"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => <TextField label="VIN" fullWidth {...field} sx={{ mb: 1.5 }}/>}
+                />
+                <Controller
+                    name="price"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => <TextField label="Price" fullWidth {...field} sx={{ mb: 1.5 }}/>}
+                />
                 <Controller
                     name="availability"
                     control={control}
