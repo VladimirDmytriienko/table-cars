@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/table-cars-management/static/css/main.cae19beb.css",
+    "main.js": "/table-cars-management/static/js/main.d499b2dc.js",
+    "index.html": "/table-cars-management/index.html",
+    "main.cae19beb.css.map": "/table-cars-management/static/css/main.cae19beb.css.map",
+    "main.d499b2dc.js.map": "/table-cars-management/static/js/main.d499b2dc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cae19beb.css",
+    "static/js/main.d499b2dc.js"
+  ]
+}
