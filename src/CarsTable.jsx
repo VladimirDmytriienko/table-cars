@@ -1,19 +1,18 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { useTableSearch } from "./useTableSearch";
-import { Stack, Pagination, TextField, Button } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import AddCarModal from "./components/AddCarModal";
-import CarModal from "./components/CarModal";
+import { useTableSearch } from './hooks/useTableSearch';
+import { Stack, Pagination } from '@mui/material';
+import AddCarModal from "./components/modals/AddCarModal";
+import CarModal from "./components/modals/CarModal";
 import CarTable from "./components/CarTable";
 import fetchData from "./services/fetchData";
+import SearchField from "./components/SearchField";
+import AddCarButton from "./components/AddCarButton";
 
 const CarsTable = () => {
     const [cars, setCars] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
-
     const [selectedCar, setSelectedCar] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -34,7 +33,6 @@ const CarsTable = () => {
         const firstIndex = lastIndex - itemsPerPage;
         return filteredData.slice(firstIndex, lastIndex);
     }, [currentPage, itemsPerPage, filteredData]);
-
 
     const handlePageChange = (event, page) => {
         setCurrentPage(page);
@@ -67,34 +65,13 @@ const CarsTable = () => {
         const updatedCars = [...cars, newCar];
         setCars(updatedCars);
         localStorage.setItem("cars-table", JSON.stringify(updatedCars));
-
         setIsAddModalOpen(false);
     };
 
     return (
         <div className="wrapper">
-
-            <TextField
-                id="outlined-basic" label="Search" variant="outlined"
-                type="text"
-                value={searchTerm}
-                onChange={handleSearch}
-                placeholder="Search..."
-                size="small"
-            />
-            <Button variant="outlined" sx={{
-                color: 'gray',
-                borderColor: 'gray',
-                '&:hover': {
-                    borderColor: 'blue',
-                    color: 'blue',
-                },
-                p: '7px',
-                m: '0 7px',
-
-            }} startIcon={<AddIcon />} onClick={() => setIsAddModalOpen(true)}>
-                Add Car
-            </Button>
+            <SearchField searchTerm={searchTerm} handleSearch={handleSearch}/>
+            <AddCarButton  onClick={() => setIsAddModalOpen(true)}/>
 
             <CarTable cars={currentItems} onDelete={handleDeleteCar} onEdit={handleEditCar} />
 

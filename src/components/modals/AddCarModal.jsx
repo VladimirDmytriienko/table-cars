@@ -3,6 +3,7 @@ import { Modal, TextField, Button, Box, IconButton, Select, MenuItem, } from "@m
 import CloseIcon from "@mui/icons-material/Close";
 import { useForm, Controller } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
+import modalStyles from "./modalStyles";
 
 const AddCarModal = ({ open, onClose, onSave }) => {
     const { control, handleSubmit, setValue, reset } = useForm();
@@ -35,20 +36,7 @@ const AddCarModal = ({ open, onClose, onSave }) => {
 
     return (
         <Modal open={open} onClose={handleClose}>
-            <Box
-                sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    maxHeight: "88vh",
-                    width: 400,
-                    backgroundColor: "white",
-                    p: 4,
-                    borderRadius: 4,
-                    boxShadow: 24,
-                }}
-            >
+            <Box sx={modalStyles} >
                 <IconButton sx={{ position: "absolute", top: 0, right: 0 }} onClick={handleClose}>
                     <CloseIcon />
                 </IconButton>

@@ -7,15 +7,7 @@ const DeleteModal = ({ open, onCancel, onConfirm }) => {
         <Dialog open={open} onClose={onCancel}>
             <DialogTitle>
                 Confirm Delete
-                <IconButton
-                    aria-label="close"
-                    onClick={onCancel}
-                    sx={{
-                        position: 'absolute',
-                        right: 8,
-                        top: 8,
-                    }}
-                >
+                <IconButton onClick={onCancel} aria-label="close" sx={{ position: 'absolute', right: 8, top: 8,}} >
                     <CloseIcon />
                 </IconButton>
             </DialogTitle>
@@ -23,7 +15,6 @@ const DeleteModal = ({ open, onCancel, onConfirm }) => {
                 Are you sure you want to delete this car?
             </DialogContent>
             <DialogActions>
-
                 <Button onClick={onConfirm} variant="outlined" startIcon={<DeleteIcon />}>
                     Delete
                 </Button>

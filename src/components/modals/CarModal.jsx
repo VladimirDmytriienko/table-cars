@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Modal, TextField, Button, Box, IconButton, Select, MenuItem, } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useForm, Controller } from "react-hook-form";
+import modalStyles from "./modalStyles";
 
 const CarModal = ({ car, open, onClose, onSave }) => {
 
@@ -37,24 +38,14 @@ const CarModal = ({ car, open, onClose, onSave }) => {
 
     return (
         <Modal open={open} onClose={handleClose} >
-            <Box
-                sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    maxHeight: "88vh",
-                    width: 400,
-                    backgroundColor: "white",
-                    p: 4,
-                    borderRadius: 4,
-                    boxShadow: 24,
-                }}
-            >
+            <Box sx={modalStyles}>
+                
                 <IconButton sx={{ position: "absolute", top: 0, right: 0 }} onClick={handleClose}>
                     <CloseIcon />
                 </IconButton>
+
                 <h2>Edit Car</h2>
+                
                 <TextField label="Company" size="small" value={car.car} disabled fullWidth sx={{ mb: 1.5 }} />
                 <TextField label="Model" size="small" value={car.car_model} disabled fullWidth sx={{ mb: 1.5 }} />
                 <TextField label="VIN" size="small" value={car.car_vin} disabled fullWidth sx={{ mb: 1.5 }} />
