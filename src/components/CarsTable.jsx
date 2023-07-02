@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { useTableSearch } from './hooks/useTableSearch';
+import { useTableSearch } from '../hooks/useTableSearch';
 import { Stack, Pagination } from '@mui/material';
-import AddCarModal from "./components/modals/AddCarModal";
-import CarModal from "./components/modals/CarModal";
-import CarTable from "./components/CarTable";
-import fetchData from "./services/fetchData";
-import SearchField from "./components/SearchField";
-import AddCarButton from "./components/AddCarButton";
+import AddCarModal from "./modals/AddCarModal";
+import CarModal from "./modals/CarModal";
+import CarTable from "./table-row/CarTable";
+import fetchData from "../services/fetchData";
+import SearchField from "./SearchField";
+import AddCarButton from "./table-row/AddCarButton";
 
 const CarsTable = () => {
     const [cars, setCars] = useState([]);

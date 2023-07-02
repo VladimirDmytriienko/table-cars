@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Modal, TextField, Button, Box, IconButton, Select, MenuItem, } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useForm, Controller } from "react-hook-form";
@@ -10,7 +10,7 @@ const AddCarModal = ({ open, onClose, onSave }) => {
 
     useEffect(() => {
         setValue("carId", uuidv4());
-    }, [setValue]);
+    }, [open, setValue]);
 
     const handleClose = () => {
         onClose();

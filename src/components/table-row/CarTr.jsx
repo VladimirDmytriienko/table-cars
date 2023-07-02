@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { MenuItem, Menu, Button } from "@mui/material";
+
 import DeleteModal from "./DeleteModal";
 
 const CarTr = ({ car, onDelete, onEdit }) => {
-    const [anchorEl, setAnchorEl] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
     const handleMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
-
     const handleMenuClose = () => {
-        setAnchorEl(false);
+        setAnchorEl(null);
     };
 
     const handleDelete = () => {
