@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/table-cars/static/css/main.6079fdb9.css",
-    "main.js": "/table-cars/static/js/main.375ca26c.js",
+    "main.js": "/table-cars/static/js/main.27f10a2f.js",
     "index.html": "/table-cars/index.html",
     "main.6079fdb9.css.map": "/table-cars/static/css/main.6079fdb9.css.map",
-    "main.375ca26c.js.map": "/table-cars/static/js/main.375ca26c.js.map"
+    "main.27f10a2f.js.map": "/table-cars/static/js/main.27f10a2f.js.map"
   },
   "entrypoints": [
     "static/css/main.6079fdb9.css",
-    "static/js/main.375ca26c.js"
+    "static/js/main.27f10a2f.js"
   ]
 }
